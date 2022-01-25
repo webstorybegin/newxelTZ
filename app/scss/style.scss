@@ -1,0 +1,583 @@
+@import "./variables.scss";
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+:focus,
+:active {
+  outline: none;
+}
+a:focus,
+a:active {
+  outline: none;
+}
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  min-width: 320px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+input,
+button,
+textarea {
+  font-family: inherit;
+  resize: none;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration input::-ms-clear {
+  display: none;
+}
+button {
+  cursor: pointer;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+a,
+a:visited {
+  text-decoration: none;
+  color: $black;
+  cursor: pointer;
+}
+a:hover {
+  text-decoration: none;
+}
+ul,
+li {
+  list-style: none;
+  cursor: pointer;
+}
+
+img {
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.header {
+  font-size: 15px;
+  box-shadow: 0 4px 6px 0 $black-opacity;
+  border-top: 3px solid $blue;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header__nav_container {
+  display: flex;
+  flex-wrap: wrap;
+
+  a {
+    font-size: 15;
+  }
+}
+
+.header__nav,
+.header__nav_search {
+  border-left: 1px solid $grey;
+  border-right: 1px solid $grey;
+  padding: 20px 40px 20px 45px;
+  position: relative;
+  cursor: pointer;
+
+  &:not(:nth-child(1)):not(:nth-child(5)):after {
+    background: url("../img/icons/arrow.svg") 0 0 no-repeat;
+  }
+
+  &:hover:not(:nth-child(1)):not(:nth-child(5)) {
+    background: $grey-light;
+    transition: 0.1s linear 0s;
+
+    &:after {
+      top: 25%;
+      transform: rotate(180deg);
+    }
+  }
+
+  &:nth-child(1) {
+    border: none;
+    &:before {
+      background: url("../img/icons/pencil.svg") 0 0 no-repeat;
+    }
+  }
+
+  &:nth-child(2) {
+    border-right: none;
+    &:before {
+      background: url("../img/icons/cup.svg") 0 0 no-repeat;
+    }
+  }
+
+  &:nth-child(3) {
+    border-right: none;
+    &:before {
+      background: url("../img/icons/tools.svg") 0 0 no-repeat;
+    }
+  }
+
+  &:nth-child(4) {
+    &:before {
+      background: url("../img/icons/coupon.svg") 0 0 no-repeat;
+    }
+  }
+
+  &:nth-child(5) {
+    border: none;
+    padding-right: 0;
+  }
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    width: 15px;
+    height: 20px;
+  }
+
+  &::before {
+    left: 20px;
+  }
+
+  &::after {
+    right: 15px;
+  }
+}
+
+.header__nav_search {
+  &::before {
+    background: url("../img/icons/search.svg") 0 0 no-repeat;
+  }
+
+  input {
+    font-size: 15px;
+    width: calc(100% - 35px);
+  }
+}
+
+.header__nav_menu_vpn,
+.header__nav_menu_tools,
+.header__nav_menu_coupons {
+  z-index: 1;
+  display: none;
+  position: absolute;
+  background: $white;
+  right: 0;
+  top: 57px;
+  left: 0;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  transition: 0.1s linear 0s;
+  z-index: 100;
+
+  li {
+    position: relative;
+    display: block;
+    padding: 15px 0 15px 60px;
+    transition: 0.1s linear 0s;
+    border-bottom: 1px solid $grey-light;
+
+    &::before {
+      position: absolute;
+      content: "";
+      left: 20px;
+      top: 10px;
+      width: 25px;
+      height: 25px;
+    }
+
+    &:hover {
+      background: $grey-light;
+      transition: 0.1s linear 0s;
+    }
+  }
+}
+
+.header__nav:nth-child(2):hover .header__nav_menu_vpn {
+  display: block;
+}
+
+.header__nav:nth-child(3):hover .header__nav_menu_tools {
+  display: block;
+}
+
+.header__nav:nth-child(4):hover .header__nav_menu_coupons {
+  display: block;
+}
+
+.header__nav_menu_vpn {
+  width: 240px;
+
+  li {
+    &:nth-child(1)::before {
+      background: url("../img/icons/earth.svg") 0 0 no-repeat;
+    }
+
+    &:nth-child(2)::before {
+      background: url("../img/icons/apple.svg") 0 0 no-repeat;
+    }
+
+    &:nth-child(3)::before {
+      background: url("../img/icons/tel.svg") 0 0 no-repeat;
+    }
+
+    &:nth-child(4)::before {
+      background: url("../img/icons/download.svg") 0 0 no-repeat;
+    }
+
+    &:nth-child(5)::before {
+      background: url("../img/icons/windows.svg") 0 0 no-repeat;
+    }
+
+    &:nth-child(6)::before {
+      background: url("../img/icons/android.svg") 0 0 no-repeat;
+      width: 30px;
+      height: 40px;
+      left: 18px;
+    }
+
+    &:nth-child(7)::before {
+      background: url("../img/icons/usa.svg") 0 0 no-repeat;
+    }
+  }
+}
+
+.header__nav_menu_tools {
+  width: 520px;
+
+  li {
+    &:nth-child(1)::before {
+      background: url("../img/icons/scales.svg") 0 0 no-repeat;
+    }
+
+    &:nth-child(2)::before {
+      background: url("../img/icons/stop.svg") 0 0 no-repeat;
+    }
+
+    &:nth-child(3)::before {
+      background: url("../img/icons/wifi.svg") 0 0 no-repeat;
+    }
+
+    &:nth-child(4)::before {
+      background: url("../img/icons/bitcoin.svg") 0 0 no-repeat;
+    }
+
+    &:nth-child(5)::before {
+      background: url("../img/icons/shield.svg") 0 0 no-repeat;
+    }
+
+    &:nth-child(6)::before {
+      background: url("../img/icons/lock.svg") 0 0 no-repeat;
+    }
+
+    &:nth-child(7)::before {
+      background: url("../img/icons/location.svg") 0 0 no-repeat;
+    }
+
+    &:nth-child(8)::before {
+      background: url("../img/icons/search_location.svg") 0 0 no-repeat;
+    }
+
+    &:nth-child(9)::before {
+      background: url("../img/icons/tv.svg") 0 0 no-repeat;
+    }
+
+    &:nth-child(10)::before {
+      background: url("../img/icons/speed.svg") 0 0 no-repeat;
+    }
+  }
+}
+
+.header__nav_menu_coupons {
+  width: 300px;
+
+  li {
+    &:nth-child(1)::before {
+      background: url("../img/icons/express.svg") 0 0 no-repeat;
+    }
+
+    &:nth-child(2)::before {
+      background: url("../img/icons/ghost.svg") 0 0 no-repeat;
+    }
+
+    &:nth-child(3)::before {
+      background: url("../img/icons/private.svg") 0 0 no-repeat;
+    }
+
+    &:nth-child(4)::before {
+      background: url("../img/icons/lock_vpn.svg") 0 0 no-repeat;
+      left: 23px;
+    }
+
+    &:nth-child(5)::before {
+      background: url("../img/icons/hat.svg") 0 0 no-repeat;
+      left: 23px;
+    }
+  }
+}
+
+.header__nav_language__mob {
+  position: relative;
+
+  &:before,
+  &:after {
+    position: absolute;
+    content: "";
+    width: 15px;
+    height: 15px;
+  }
+
+  &:before {
+    left: 10px;
+    background: url("../img/icons/earth_blue.svg") 0 0 no-repeat;
+  }
+
+  &:after {
+    right: 0;
+    background: url("../img/icons/arrow.svg") 0 0 no-repeat;
+  }
+}
+
+.header__nav_language {
+  button {
+    margin-top: 8px;
+  }
+}
+
+.header__nav_language__btn {
+  position: relative;
+  padding: 10px 35px 10px 10px;
+  background: $blue;
+  transition: 0.2s;
+  font-size: 17px;
+  color: $white;
+  border-radius: 3px;
+
+  &::after {
+    position: absolute;
+    content: "";
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: url("../img/icons/arrow_white.svg") 0 0 no-repeat;
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.header__nav_language__item {
+  z-index: 100;
+  position: absolute;
+  background: $white;
+  width: 400px;
+  columns: 3;
+  right: 0;
+  top: 53px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 20px 0;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+
+  li {
+    display: block;
+    padding: 3px 20px;
+    transition: 0.1s linear 0s;
+    &:hover {
+      background: $grey-light;
+      transition: 0.1s linear 0s;
+    }
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.activeArrow {
+  &::after {
+    transform: rotate(180deg);
+    top: 25%;
+    right: 10px;
+  }
+}
+
+.activeArrowMob {
+  &::after {
+    transform: rotate(180deg);
+  }
+}
+
+.burger {
+  position: relative;
+  display: none;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+
+  span {
+    width: 100%;
+    height: 2px;
+    background: $blue;
+  }
+
+  &:before,
+  &:after {
+    position: absolute;
+    content: "";
+    height: 2px;
+    background: $blue;
+    width: 100%;
+    transition: 0.1s linear 0s;
+  }
+
+  &:before {
+    top: 7px;
+  }
+
+  &:after {
+    bottom: 7px;
+  }
+}
+
+.burger_active {
+  span {
+    display: none;
+  }
+
+  &:before {
+    transform: rotate(40deg);
+    top: 15px;
+  }
+
+  &:after {
+    transform: rotate(-40deg);
+    top: 15px;
+  }
+}
+
+@media (max-width: 1070px) {
+  .container {
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .header {
+    box-shadow: none;
+    border: 1px solid $grey-light;
+  }
+
+  .header__nav_language__item {
+    left: 0;
+    top: 411px;
+    columns: 1;
+    padding: 0;
+    width: 100%;
+
+    li {
+      padding: 10px 0;
+      border-bottom: 1px solid $grey-light;
+    }
+  }
+
+  .header__nav_menu_vpn,
+  .header__nav_menu_tools,
+  .header__nav_menu_coupons {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .burger {
+    display: flex;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+  }
+
+  .header__nav_container {
+    display: none;
+    width: 100%;
+  }
+
+  .show {
+    display: block;
+  }
+
+  .header__nav,
+  .header__nav_search {
+    border-bottom: 1px solid $grey-light;
+    border-left: none;
+    border-right: none;
+    margin-left: -10px;
+    margin-right: -10px;
+
+    &:after {
+      left: 130px;
+    }
+
+    &:nth-child(1) {
+      margin-top: 10px;
+      border-top: 1px solid $grey-light;
+      border-bottom: 1px solid $grey-light;
+    }
+
+    &:nth-child(5) {
+      border-bottom: 1px solid $grey-light;
+    }
+  }
+
+  .header__nav_language {
+    padding: 20px 0;
+    button {
+      display: none;
+    }
+
+    a {
+      display: inline-block;
+      padding-left: 35px;
+      padding-right: 51px;
+    }
+  }
+}
